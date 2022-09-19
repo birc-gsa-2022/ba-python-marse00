@@ -12,7 +12,17 @@ def border_array(x: str) -> list[int]:
     >>> border_array("")
     []
     """
-    return []  # FIXME
+    i, j = 0, 1
+    ba = [0 for k in range(len(x))]
+    while j < len(x):
+        if x[i] == x[j]:
+            ba[j] = ba[j-1] + 1
+            i += 1
+        else:
+            i = 0
+        j += 1
+
+    return ba  # FIXME
 
 
 def strict_border_array(x: str) -> list[int]:
@@ -34,4 +44,10 @@ def strict_border_array(x: str) -> list[int]:
     >>> strict_border_array("")
     []
     """
-    return []  # FIXME
+    ba = border_array(x)
+    for i in range(len(ba)):
+        if i == 0:
+            continue
+        if ba[i] != 0:
+            ba[i-1] = 0 
+    return ba  # FIXME
